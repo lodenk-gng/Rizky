@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Prodi HKI</title>
+    <link rel="stylesheet" href="data_hki.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .search-container {
+            margin-bottom: 20px;
+        }
+        .search-container input {
+            padding: 10px;
+            width: 300px;
+            font-size: 16px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        marquee {
+            font-family: impact;
+        }
+    </style>
+</head>
+<body>
+    <marquee behavior="scroll" direction="left" scrollamount="5"> 
+        INI ADALAH SEMUA DATA DARI MAHASISWA PRODI HKI (HUKUM KELUARGA ISLAM)
+    </marquee>
+        
+
+    <!-- Input Pencarian -->
+    <div class="search-container">
+        <input type="teks" id="searchInput" placeholder="Cari berdasarkan NIM, Nama, atau Alamat..." onkeyup="searchTable()">
+    </div>
+
+    <table class="tabeldoang">
+        <thead>
+            <tr>
+                <th>NO</th>
+                <th>NIM</th>
+                <th>NAMA</th>
+                <th>TANGGAL LAHIR</th>
+                <th>ALAMAT</th>
+                <th>NO WA</th>
+            </tr>
+        </thead>
+
+        <tbody id="data-table-body">
+            <tr>
+                <td>1</td>
+                <td>202474230018</td>
+                <td>Faruq</td>
+                <td>22-12-2000</td>
+                <td>Ds. Bangkalan</td>
+                <td>085855098263</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>202474230019</td>
+                <td>Aisyah</td>
+                <td>15-05-2001</td>
+                <td>Jl. Merdeka No. 10</td>
+                <td>085123456789</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>202474230020</td>
+                <td>Budi Santoso</td>
+                <td>10-11-2000</td>
+                <td>Kota Malang, Jl. Sukun No. 5</td>
+                <td>081234567890</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>202474230021</td>
+                <td>Siti Aminah</td>
+                <td>01-01-2002</td>
+                <td>Kabupaten Lumajang, Ds. Taman Ayu</td>
+                <td>082345678901</td>
+            </tr>
+            <!-- Tambahkan lebih banyak baris sesuai kebutuhan -->
+        </tbody>
+    </table>
+
+    <!-- JavaScript untuk Pencarian -->
+    <script>
+        function searchTable() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase();
+            const tableBody = document.getElementById('data-table-body');
+            const rows = tableBody.getElementsByTagName('tr');
+
+            for (let i = 0; i < rows.length; i++) {
+                const cells = rows[i].getElementsByTagName('td');
+                let rowContainsFilter = false;
+
+                for (let j = 0; j < cells.length; j++) {
+                    if (cells[j]) {
+                        const cellValue = cells[j].textContent || cells[j].innerText;
+                        if (cellValue.toLowerCase().indexOf(filter) > -1) {
+                            rowContainsFilter = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (rowContainsFilter) {
+                    rows[i].style.display = ""; // Tampilkan baris
+                } else {
+                    rows[i].style.display = "none"; // Sembunyikan baris
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
